@@ -21,4 +21,6 @@ html, body {
     border-radius: 5px;
     max-width: 560px;
     word-wrap: break-word;
+    /* 改行を反映 */
+    white-space: pre-wrap;
 }

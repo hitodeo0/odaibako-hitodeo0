@@ -40,6 +40,8 @@ blockquote {
 
 .message {
     font-size: 100%;
+    /* 改行を反映 */
+    white-space: pre-wrap;
 }
 
 .timestamp {

@@ -2,19 +2,21 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="感想とかお題とか下さいフォーム">
-  <meta name="twitter:description" content="${message}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="感想とかお題とか下さいフォーム">
+  <meta property="og:description" content="${message}">
+  <meta property="og:image" content="${thumbnail}.png">
+  <meta property="og:url" content="https://hitodeo0.github.io/odaibako-hitodeo0/messages/${filename}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>感想とかお題とか下さいフォーム</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>☄ #</h1>
+  <h1>☄ #${timestamp}</h1>
   <blockquote>
     <div class="message">${message}</div>
   </blockquote>
-  <div class="timestamp">${timestamp}</div>
+  <div class="timestamp">${datestr}</div>
   <div><a href="https://docs.google.com/forms/d/e/1FAIpQLSfJL9zf10IHo852gn9nrFWjuQlR2eNcZ3TIIKosctCyaBJSKQ/viewform?usp=sf_link">感想とかお題を送る</a></div>
 </body>
 </html>
