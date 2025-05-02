@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>メッセージ一覧</title>
+</head>
+<body>
+  <h1>メッセージ一覧</h1>
+  <ul id="message-list"></ul>
+
+  <script>
+    fetch("list.json")
+      .then(response => response.json())
+      .then(data => {
+        const ul = document.getElementById("message-list");
+        data.forEach(item => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = item.path;
+          a.textContent = `${item.date} - ${item.title}`;
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
