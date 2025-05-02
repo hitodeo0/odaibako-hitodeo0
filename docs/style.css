@@ -42,15 +42,18 @@ blockquote {
     font-size: 100%;
 }
 
+.message_OGP {
+    margin: -3%;
+    background-color: #e4e4e4;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 100%;
+    height: 100%;
+}
+
 .timestamp {
     text-align: right;
     font-size: 80%;
     color: #bbbbbb;
     margin-bottom: 2rem;
-}
-
-@media only screen and (max-width:500px) {
-    .unity600900 {
-        width: 94%;
-    }
 }
