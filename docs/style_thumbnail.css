@@ -1,18 +1,16 @@
 @charset "utf-8";
 
-*:focus {
-    outline: none;
-}
-
-html {
-    word-wrap: normal;
+html, body {
+    margin: 0;
+    padding: 0;
     width: 600px;
     height: 315px;
-}
-
-body {
     font-family: 'Noto Sans JP', sans-serif;
     color: #191919;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .message_OGP {
@@ -21,4 +19,6 @@ body {
     font-size: 120%;
     background-color: #e4e4e4;
     border-radius: 5px;
+    max-width: 560px;
+    word-wrap: break-word;
 }
