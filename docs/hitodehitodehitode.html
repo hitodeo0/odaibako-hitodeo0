@@ -2,10 +2,11 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>メッセージ一覧</title>
+  <title>☄一覧</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>メッセージ一覧</h1>
+  <h1>☄一覧</h1>
   <ul id="message-list"></ul>
 
   <script>
@@ -16,7 +17,7 @@
         data.forEach(item => {
           const li = document.createElement("li");
           const a = document.createElement("a");
-          a.href = item.path;
+          a.href = "messages/" + item.path;
           a.textContent = `${item.date} - ${item.title}`;
           li.appendChild(a);
           ul.appendChild(li);
