@@ -1,0 +1,13 @@
+{
+  "name": "odaibako-hitodeo0-og",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "OGP (Twitter card) image generator for odaibako-hitodeo0",
+  "scripts": {
+    "og": "node scripts/generate-og.mjs"
+  },
+  "dependencies": {
+    "puppeteer": "^23.11.1"
+  }
+}
