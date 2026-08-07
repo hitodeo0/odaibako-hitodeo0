@@ -1,0 +1,62 @@
+name: Generate OGP images
+
+# メッセージが増えたとき(= GASが list.json / messages を push したとき)に起動して、
+# 足りていないOGP画像を生成し、リポジトリにコミットし直す。
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/list.json"
+      - "docs/messages/**"
+      - "scripts/generate-og.mjs"
+      - "package.json"
+      - ".github/workflows/og.yml"
+  workflow_dispatch: # 手動実行も可能にしておく
+
+# 生成した画像をコミットして戻すために書き込み権限が必要
+permissions:
+  contents: write
+
+# 同時に走らないようにする（連続pushでも順番に処理）
+concurrency:
+  group: og-generate
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Ubuntuランナーには日本語フォント・絵文字フォントが入っていないので入れる。
+      # これを忘れると文字が豆腐(□)になる。
+      - name: Install Japanese & emoji fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk fonts-noto-color-emoji
+          fc-cache -f
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate OGP images
+        run: node scripts/generate-og.mjs
+
+      - name: Commit generated images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/og docs/messages
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            # [skip ci] を付けて、このコミットで再度ワークフローが走らないようにする
+            git commit -m "Generate OGP images [skip ci]"
+            git push
+          fi
